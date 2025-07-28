@@ -34,20 +34,19 @@ COMO RODAR O PROJETO
 # Database
 DB_ROOT_PASSWORD=senhadobanco
 DB_DATABASE_NAME=projeto
-DB_USER=meunome
+DB_USER=giovannadequi
 DB_PASSWORD=senhadobanco
 DB_PORT_LOCAL=3307
 DB_PORT_DOCKER=3306
 IP=mysql
 
-# Backend
-BACKEND_PORT_CONTAINER=8081
-BACKEND_PORT_HOST=8081
+# Web app
+BACKEND_PORT_DOCKER=8081
+BACKEND_PORT_LOCAL=8081
+FRONTEND_PORT_DOCKER=5173
+FRONTEND_PORT_LOCAL=5173
 
-# Frontend
-FRONTEND_PORT_CONTAINER=5173
-FRONTEND_PORT_HOST=5173
-
+# Internal users
 SYS_USER=user
 SYS_PASSWD=123
 SYS_ADM_USER=admin
@@ -59,7 +58,7 @@ SYS_ADM_PASSWD=admin123
 
 5. Acessar a aplicação:
    - Frontend: http://localhost:5173
-   - Backend (Swagger): http://localhost:8080/swagger-ui/index.html
+   - Backend (Swagger): http://localhost:8081/swagger-ui/index.html
 
 SEEDING DO BANCO
 -----------------
