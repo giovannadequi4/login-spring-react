@@ -30,7 +30,7 @@ COMO RODAR O PROJETO
 
 3. Crie o arquivo `.env` na raiz com o seguinte conteúdo:
 
-```
+``` bash
 # Database
 DB_ROOT_PASSWORD=senhadobanco
 DB_DATABASE_NAME=projeto
