@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        boot:
+          allow_jdbc_metadata_access: false
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+api:
+  security:
+    token:
+      secret: my-secret-key
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
