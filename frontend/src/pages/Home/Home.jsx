@@ -1,20 +1,10 @@
 import React from 'react';
-import { Box, Button, Container, Typography, Stack } from '@mui/material';
+import { Box, Container, Typography, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/layouts/MainLayout';
 
 export default function Home() {
   const navigate = useNavigate();
-
-  const handleGoToUsers = () => {
-    navigate('/users');
-  };
-
-  const handleLogout = () => {
-    // Aqui você pode limpar localStorage, tokens, etc.
-    // Ex: localStorage.removeItem('token');
-    navigate('/');
-  };
 
   return (
     <Layout>

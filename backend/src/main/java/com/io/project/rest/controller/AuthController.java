@@ -1,5 +1,10 @@
 package com.io.project.rest.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.io.project.domain.entity.User;
 import com.io.project.rest.dto.LoginRequestDTO;
 import com.io.project.rest.dto.RegisterRequestDTO;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@Tag(name = "Autenticação", description = "Endpoints para login e gerenciamento de autenticação")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -25,6 +31,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     
+    @Operation(summary = "Autentica usuário e gera token JWT")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body){
         User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
@@ -35,7 +42,7 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
-
+    @Operation(summary = "Registra novo usuário")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequestDTO body) {
         if (isEmailOrCpfRegistered(body.email(), body.cpf())) {
