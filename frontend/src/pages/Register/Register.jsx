@@ -37,7 +37,7 @@ export default function Register() {
     try {
       await register({ name, email, password, cpf, role });
       showSnackbar('Usuário cadastrado com sucesso!', 'success');
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       showSnackbar(err.message, 'error');
     }
@@ -109,7 +109,7 @@ export default function Register() {
         <AuthLink
           question="Já tem uma conta?"
           linkText="Entrar"
-          to="/"
+          to="/login"
         />
       </Box>
     </AuthLayout>

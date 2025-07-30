@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+import org.springframework.http.HttpStatus;
 import com.io.project.domain.entity.User;
 import com.io.project.rest.dto.LoginRequestDTO;
 import com.io.project.rest.dto.RegisterRequestDTO;
@@ -33,13 +34,17 @@ public class AuthController {
     
     @Operation(summary = "Autentica usuário e gera token JWT")
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginRequestDTO body){
-        User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
-        if(passwordEncoder.matches(body.password(), user.getPassword())) {
-            String token = this.tokenService.generateToken(user);
-            return ResponseEntity.ok(new ResponseDTO(user.getName(), token));
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO body) {
+        Optional<User> userOpt = this.repository.findByEmail(body.email());
+
+        if (userOpt.isEmpty() || !passwordEncoder.matches(body.password(), userOpt.get().getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Usuário ou senha inválidos");
         }
-        return ResponseEntity.badRequest().build();
+
+        User user = userOpt.get();
+        String token = this.tokenService.generateToken(user);
+        return ResponseEntity.ok(new ResponseDTO(user.getId(), user.getName(), token));
     }
 
     @Operation(summary = "Registra novo usuário")
@@ -53,7 +58,7 @@ public class AuthController {
         repository.save(newUser);
 
         String token = tokenService.generateToken(newUser);
-        return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token));
+        return ResponseEntity.ok(new ResponseDTO(newUser.getId(), newUser.getName(), token));
     }
 
     private boolean isEmailOrCpfRegistered(String email, String cpf) {

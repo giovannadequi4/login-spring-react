@@ -12,7 +12,7 @@ export async function login(email, password) {
     try {
       data = JSON.parse(text);
     } catch (e) {
-      throw new Error('Resposta inválida do servidor: ' + text);
+      throw new Error(text);
     }
 
     if (!response.ok) {
@@ -20,7 +20,7 @@ export async function login(email, password) {
     }
 
     localStorage.setItem('token', data.token);
-    return data.user;
+    return data;
   } catch (err) {
     console.error('Erro no login:', err);
     throw err;

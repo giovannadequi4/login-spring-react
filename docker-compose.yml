@@ -21,12 +21,12 @@ services:
     image: meu-projeto/web:1.0
     env_file: ./.env
     restart: always
-    ports: ['${WEB_PORT_LOCAL}:${WEB_PORT_DOCKER}']
+    ports: ['${BACKEND_PORT_LOCAL}:${BACKEND_PORT_DOCKER}']
     environment:
        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:${DB_PORT_DOCKER}/${DB_DATABASE_NAME}
        SPRING_DATASOURCE_USERNAME: ${DB_USER}
        SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
-       SPRING_SERVER_PORT: ${WEB_PORT_LOCAL}
+       SPRING_SERVER_PORT: ${BACKEND_PORT_LOCAL}
        SYS_USER: ${SYS_USER}
        SYS_PASSWD: ${SYS_PASSWD}
        SYS_ADM_USER: ${SYS_ADM_USER}
@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile
     image: project/frontend:1.0
     container_name: app-frontend
-    ports: ['${WEBFRONT_PORT_LOCAL}:${WEBFRONT_PORT_DOCKER}']
+    ports: ['${FRONTEND_PORT_LOCAL}:${FRONTEND_PORT_DOCKER}']
     volumes:
       - ./frontend:/app
       - /app/node_modules

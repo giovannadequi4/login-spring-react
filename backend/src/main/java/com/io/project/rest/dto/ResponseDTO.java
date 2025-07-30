@@ -1,3 +1,3 @@
 package com.io.project.rest.dto;
 
-public record ResponseDTO (String name, String token) { }
+public record ResponseDTO(Long id, String name, String token) {}

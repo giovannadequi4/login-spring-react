@@ -3,34 +3,30 @@ import { getUsers, deleteUser } from '../services/apiUser';
 
 export default function useUsers() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState(null);
 
-  const loadUsers = async () => {
-    try {
-      setLoading(true);
-      const dados = await getUsers();
-      setUsers(dados);
-      setErro(null);
-    } catch (err) {
-      setErro(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const excludeUser = async (id) => {
-    try {
-      await deleteUser(id);
-      setUsers((prev) => prev.filter((u) => u.id !== id));
-    } catch (err) {
-      setErro(err.message);
-    }
-  };
-
   useEffect(() => {
-    loadUsers();
+    async function fetchUsers() {
+      setLoading(true);
+      setErro(null);
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        setErro(error.message || 'Erro desconhecido');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchUsers();
   }, []);
+
+  async function excludeUser(id) {
+    await deleteUser(id);
+    setUsers((prevUsers) => prevUsers.filter((u) => u.id !== id));
+  }
 
   return { users, loading, erro, excludeUser };
 }
+

@@ -53,7 +53,7 @@ export default function Login() {
         <AuthLink
           question="Ainda não tem uma conta?"
           linkText="Criar conta"
-          to="/register"
+          to="/signup"
         />
       </Box>
     </AuthLayout>

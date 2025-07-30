@@ -9,8 +9,8 @@ import ChangePassword from '../pages/Profile/ChangePassword';
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
       <Route
         path="/home"
         element={
