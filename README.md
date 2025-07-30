@@ -68,7 +68,7 @@ SEGURANÇA
 
 DIFERENCIAIS
 -------------------------
-- Validações com Formik + Yup
+- Validações com Yup
 - Integração com Swagger para documentação automática da API
 - Banco de dados em container Docker (sem instalação local)
 - Deploy local simplificado com Docker Compose
