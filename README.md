@@ -6,7 +6,7 @@ Este projeto é um sistema web completo de autenticação com funcionalidades de
 
 TECNOLOGIAS UTILIZADAS
 -----------------------
-- Frontend: React + Vite + MUI + Formik + Yup
+- Frontend: React + Vite + MUI + Yup
 - Backend: Java Spring Boot + Spring Security
 - Banco de Dados: MySQL (via Docker)
 - Docker + Docker Compose
