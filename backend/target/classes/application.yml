@@ -1,6 +1,13 @@
+server:
+  port: 8081
+
 spring:
   datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driverClassName: com.mysql.cj.jdbc.Driver
+
   jpa:
     properties:
       hibernate:
@@ -10,4 +17,14 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+api:
+  security:
+    token:
+      secret: my-secret-key
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

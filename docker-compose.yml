@@ -2,7 +2,7 @@ services:
   mysql:
     image: mysql:9.1.0
     restart: always
-    container_name: app-mysql-project
+    container_name: mysql-project-app
     env_file: ./.env
     environment:
        MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -36,7 +36,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     image: project/frontend:1.0
-    container_name: app-frontend
+    container_name: frontend-app
     ports: ['${FRONTEND_PORT_LOCAL}:${FRONTEND_PORT_DOCKER}']
     volumes:
       - ./frontend:/app
